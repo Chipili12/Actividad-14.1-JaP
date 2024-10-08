@@ -23,7 +23,6 @@ document.getElementById("btnBuscar").addEventListener("click", (e) => {
     const API_URL = `https://images-api.nasa.gov/search?q=${inputBuscar}`
     fetchItems(API_URL).then((data) => {
         searchData = data;
-        console.log(searchData);
         showItem(searchData);
     });
 })
@@ -33,7 +32,6 @@ document.getElementById("btnBuscar").addEventListener("click", (e) => {
 const showItem = (searchData) => {
     const contenedor = document.getElementById("contenedor");
     contenedor.innerHTML = "";
-    console.log(searchData)
     let item = searchData.collection.items
 
     for (let i = 0; i < searchData.collection.metadata.total_hits; i++) {
@@ -51,7 +49,7 @@ const showItem = (searchData) => {
         card.classList.add("col-md-4","col-sm-12");
         card.innerHTML = `
           <div class="card mb-4 shadow">
-            <img src="http://images-assets.nasa.gov/image/${item[i].data[0].nasa_id}/${item[i].data[0].nasa_id}~thumb.jpg" alt="${item[i].data[0].title}" style="height: 12rem" class="card-img-top object-fit-scale border rounded">
+            <img src="https://images-assets.nasa.gov/image/${item[i].data[0].nasa_id}/${item[i].data[0].nasa_id}~thumb.jpg" alt="${item[i].data[0].title}" style="height: 12rem" class="card-img-top object-fit-scale border rounded">
             <div class="card-body">
               <h5 class="card-title">${item[i].data[0].title.length > 20 ? item[i].data[0].title.substring(0, 36) + "..." : item[i].data[0].title}</h5>
               <p class="overflow-auto" style="height: 10rem">${item[i].data[0].description}</p>
